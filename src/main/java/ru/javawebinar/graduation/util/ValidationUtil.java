@@ -1,6 +1,7 @@
 package ru.javawebinar.graduation.util;
 
 import org.slf4j.Logger;
+import ru.javawebinar.graduation.model.AbstractBaseEntity;
 import ru.javawebinar.graduation.util.exception.ErrorType;
 import ru.javawebinar.graduation.util.exception.IllegalRequestDataException;
 import ru.javawebinar.graduation.util.exception.NotFoundException;
@@ -34,18 +35,18 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkNew(HasId bean) {
-        if (!bean.isNew()) {
-            throw new IllegalRequestDataException(bean + " must be new (id=null)");
+    public static void checkNew(AbstractBaseEntity entity) {
+        if (!entity.isNew()) {
+            throw new IllegalRequestDataException(entity + " must be new (id=null)");
         }
     }
 
-    public static void assureIdConsistent(HasId bean, int id) {
+    public static void assureIdConsistent(AbstractBaseEntity entity, int id) {
 //      conservative when you reply, but accept liberally (http://stackoverflow.com/a/32728226/548473)
-        if (bean.isNew()) {
-            bean.setId(id);
-        } else if (bean.id() != id) {
-            throw new IllegalRequestDataException(bean + " must be with id=" + id);
+        if (entity.isNew()) {
+            entity.setId(id);
+        } else if (entity.id() != id) {
+            throw new IllegalRequestDataException(entity + " must be with id=" + id);
         }
     }
 

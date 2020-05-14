@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.SafeHtml;
-import ru.javawebinar.graduation.util.HasIdAndEmail;
+import ru.javawebinar.graduation.model.AbstractBaseEntity;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Setter
 @ToString
 @NoArgsConstructor
-public class UserTo extends BaseTo implements HasIdAndEmail, Serializable {
+public class UserTo extends AbstractBaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotBlank

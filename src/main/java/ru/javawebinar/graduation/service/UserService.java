@@ -49,7 +49,7 @@ public class UserService implements UserDetailsService {
         return checkNotFoundWithId(userRepository.findById(id).orElse(null), id);
     }
 
-    @Cacheable("users")
+    @Cacheable("user")
     public List<User> getAll() {
         return userRepository.findAll(Sort.by(Sort.Direction.ASC, "name", "email"));
     }

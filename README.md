@@ -36,7 +36,7 @@ As a result, provide a link to github repository. It should contain the code, RE
  
 ### Restaurant
 *Get by id*
-- curl -s http://localhost:8080/graduation/rest/restaurant/100003 --user admin@gmail.com:admin
+- curl -s http://localhost:8080/graduation/rest/restaurant/100002 --user admin@gmail.com:admin
  
 *Get all*
  - curl -s http://localhost:8080/graduation/rest/restaurant --user admin@gmail.com:admin
@@ -49,54 +49,54 @@ As a result, provide a link to github repository. It should contain the code, RE
  - curl -s -X DELETE http://localhost:8080/graduation/rest/restaurants/100003 --user admin@gmail.com:admin
  
 *Update*
- - URL: http://localhost:8080/graduation/rest/restaurant/100003
+ - URL: http://localhost:8080/graduation/rest/restaurant/100002
  - Parameters: {"id": 100003, "name": "One_Two_Pizza", "menu": null, "vote": null}
 
 ### Menu
 *Get by id* 
-- curl -s http://localhost:8080/graduation/rest/restaurant/100003/menu/100005 --user admin@gmail.com:admin
+- curl -s http://localhost:8080/graduation/rest/restaurant/100002/menu/100003 --user admin@gmail.com:admin
 
 *Get all*
-- curl -s http://localhost:8080/graduation/rest/restaurant/100003/menu --user admin@gmail.com:admin
+- curl -s http://localhost:8080/graduation/rest/restaurant/100002/menu --user admin@gmail.com:admin
 
 *Get today’s menu*
-- curl -s http://localhost:8080/graduation/rest/restaurant/100003/menu/currentDate --user admin@gmail.com:admin
+- curl -s http://localhost:8080/graduation/rest/restaurant/100002/menu/currentDate --user admin@gmail.com:admin
 
 *Create* 	
-- URL: http://localhost:8080/graduation/rest/restaurant/100003/menu
+- URL: http://localhost:8080/graduation/rest/restaurant/100002/menu
 - Parameters: {"id": null, "name": "Sunday", "dish": null, "restaurant": null, "date": "2020-05-11"}
 
 *Update* 	
-- URL: http://localhost:8080/graduation/rest/restaurant/100003/menu/100005
+- URL: http://localhost:8080/graduation/rest/restaurant/100002/menu/100003
 - Parameters: {"id": 100003, "name": "Monday", "dish": null, "restaurant": null, "date":"2020-05-11"}
 
 *Delete by id*
-- curl -s -X DELETE http://localhost:8080/graduation/rest/restaurant/100003/menu/100005 --user admin@gmail.com:admin
+- curl -s -X DELETE http://localhost:8080/graduation/rest/restaurant/100002/menu/100003 --user admin@gmail.com:admin
 
 ### Dish
 *Get by id*
- - curl -s http://localhost:8080/graduation/rest/restaurant/100003/menu/100005/dish/100006 --user admin@gmail.com:admin
+ - curl -s http://localhost:8080/graduation/rest/restaurant/100002/menu/100003/dish/100004 --user admin@gmail.com:admin
 
 *Get all*
-- curl -s http://localhost:8080/graduation/rest/restaurant/100003/menu/100005/dish --user admin@gmail.com:admin
+- curl -s http://localhost:8080/graduation/rest/restaurant/100002/menu/100003/dish --user admin@gmail.com:admin
 
 *Create*	
-- URL: http://localhost:8080/graduation/rest/restaurant/100003/menu/100005/dish
+- URL: http://localhost:8080/graduation/rest/restaurant/100002/menu/100003/dish
 - Parameters: {"id": null, "name": "Lunch", "price": 23.00}
 
 *Update* 	
-- URL: http://localhost:8080/graduation/rest/restaurant/100003/menu/100005/dish/100006
+- URL: http://localhost:8080/graduation/rest/restaurant/100002/menu/100003/dish/100004
 - Parameters: {"id": 100006, "name": "Lunch", "price": 45.00}
 
 *Delete by id*
-- curl -s -X DELETE http://localhost:8080/graduation/rest/restaurant/100003/menu/100005/dish/100006 --user admin@gmail.com:admin
+- curl -s -X DELETE http://localhost:8080/graduation/rest/restaurant/100002/menu/100003/dish/100004 --user admin@gmail.com:admin
 
 ### Vote
 *Get user votes*
 - curl -s http://localhost:8080/graduation/rest/votes/user/100000 --user admin@gmail.com:admin
 
 *Get restaurant votes*
--- curl -s -X POST http://localhost:8080/graduation/rest/votes/restaurant/100003 --user admin@gmail.com:admin
+-- curl -s -X POST http://localhost:8080/graduation/rest/votes/restaurant/100002 --user admin@gmail.com:admin
 
 *Delete by id*
-- curl -s -X DELETE http://localhost:8080/graduation/rest/vote/100007 --user admin@gmail.com:admin
+- curl -s -X DELETE http://localhost:8080/graduation/rest/vote/100006 --user admin@gmail.com:admin
