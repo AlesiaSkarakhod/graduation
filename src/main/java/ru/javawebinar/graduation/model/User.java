@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.util.CollectionUtils;
 import ru.javawebinar.graduation.util.HasIdAndEmail;
 
@@ -17,6 +19,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
 @ToString
@@ -50,6 +53,7 @@ public class User extends AbstractNamedEntity implements HasIdAndEmail {
     @BatchSize(size = 100)
     private Set<Role> roles;
 
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Vote> votes;
 

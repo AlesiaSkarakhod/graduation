@@ -2,6 +2,7 @@ package ru.javawebinar.graduation.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Sort;
@@ -33,21 +34,22 @@ public class UserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    @CacheEvict(value = "user", allEntries = true)
+    @CacheEvict(value = "user", allEntries = true)
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
         return prepareAndSave(user);
     }
 
-    //    @CacheEvict(value = "user", allEntries = true)
+    @CacheEvict(value = "user", allEntries = true)
     public void delete(int id) {
         checkNotFoundWithId(userRepository.delete(id) != 0, id);
     }
+
     public User get(int id) {
         return checkNotFoundWithId(userRepository.findById(id).orElse(null), id);
     }
 
-    //    @Cacheable("user")
+    @Cacheable("users")
     public List<User> getAll() {
         return userRepository.findAll(Sort.by(Sort.Direction.ASC, "name", "email"));
     }
@@ -57,7 +59,7 @@ public class UserService implements UserDetailsService {
         return checkNotFound(userRepository.getByEmail(email), "email=" + email);
     }
 
-    //    @CacheEvict(value = "user", allEntries = true)
+    @CacheEvict(value = "user", allEntries = true)
     @Transactional
     public void update(UserTo userTo) {
         User user = get(userTo.getId());
@@ -69,7 +71,7 @@ public class UserService implements UserDetailsService {
         prepareAndSave(user);
     }
 
-    //    @CacheEvict(value = "user", allEntries = true)
+    @CacheEvict(value = "user", allEntries = true)
     @Transactional
     public void enable(int id, boolean enabled) {
         User user = checkNotFoundWithId(get(id), id);

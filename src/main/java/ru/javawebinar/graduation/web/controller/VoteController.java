@@ -1,4 +1,4 @@
-package ru.javawebinar.graduation.web.vote;
+package ru.javawebinar.graduation.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,19 +19,19 @@ import java.util.List;
 public class VoteController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-    static final String REST_URL = "/rest/vote";
+    static final String REST_URL = "/rest/votes";
 
     @Autowired
     private VoteService voteService;
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/user/{userId}")
     public List<VoteTo> getVotes() {
         log.info("getAll votes");
         int userId = SecurityUtil.authUserId();
         return voteService.getAll(userId);
     }
 
-    @PostMapping("/restaurants/{restaurantId}")
+    @PostMapping("/restaurant/{restaurantId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void getVoteRestaurant(@PathVariable("restaurantId") int restaurantId) {
         log.info("vote for restaurant");

@@ -1,4 +1,4 @@
-package ru.javawebinar.graduation.web.restaurant;
+package ru.javawebinar.graduation.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

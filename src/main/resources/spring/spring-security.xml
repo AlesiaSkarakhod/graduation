@@ -4,14 +4,22 @@
              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http pattern="/resources/**" security="none"/>
-    <http pattern="/webjars/**" security="none"/>
 
     <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
+
         <http-basic/>
-        <intercept-url pattern="/login*" access="permitAll" />
+        <intercept-url pattern="/rest/login*" access="permitAll()" />
         <intercept-url pattern="/rest/admin/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/rest/profile/register" access="isAnonymous()"/>
+
+        <intercept-url pattern="/rest/dish/**" method="GET" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/dish/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/rest/restaurant/menu/**" method="GET" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/restaurant/menu/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/rest/restaurant/**" method="GET" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/restaurant/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>

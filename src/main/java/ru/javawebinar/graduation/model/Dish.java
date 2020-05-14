@@ -3,27 +3,23 @@ package ru.javawebinar.graduation.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
 @ToString
 @Entity
 @Table(name = "dish")
-public class Dish extends AbstractBaseEntity {
-
-    @NotBlank
-    @Size(min = 2, max = 100)
-    @Column(name = "name", nullable = false)
-    protected String name;
+public class Dish extends AbstractNamedEntity {
 
     @Column(name = "price")
     @Range(min = 0, max = 1000000)
@@ -44,14 +40,12 @@ public class Dish extends AbstractBaseEntity {
     }
 
     public Dish(Integer id, String name, BigDecimal price) {
-        super(id);
-        this.name = name;
+        super(id, name);
         this.price = price;
     }
 
     public Dish(Integer id, String name, BigDecimal price, @NotNull Menu menu) {
-        super(id);
-        this.name = name;
+        super(id, name);
         this.price = price;
         this.menu = menu;
     }

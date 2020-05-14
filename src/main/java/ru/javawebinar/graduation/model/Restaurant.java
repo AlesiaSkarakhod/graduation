@@ -14,12 +14,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = "name", name = "restaurant_unique_name_idx")})
-public class Restaurant extends AbstractBaseEntity {
-
-    @Column(name = "name")
-    @NotBlank
-    @Size(min = 2, max = 100)
-    private String name;
+public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private List<Menu> menus;
@@ -29,26 +24,28 @@ public class Restaurant extends AbstractBaseEntity {
 
 
     public Restaurant() {
-        name = "";
     }
 
     public Restaurant(Integer id, String name) {
-        super(id);
-        this.name = name;
+        super(id, name);
     }
 
     public Restaurant(String name) {
-        super(null);
-        this.name = name;
+        super(null, name);
     }
 
-    public Restaurant(String title, List<Menu> menus) {
-        this(null, title, menus);
+    public Restaurant(String name, List<Menu> menus) {
+        this(null, name, menus);
     }
 
     public Restaurant(Integer id, String name, List<Menu> menus) {
-        super(id);
-        this.name = name;
+        super(id, name);
         this.menus = menus;
+    }
+
+    public Restaurant(Integer id, String name, List<Menu> menus, List<Vote> votes) {
+        super(id, name);
+        this.menus = menus;
+        this.votes = votes;
     }
 }

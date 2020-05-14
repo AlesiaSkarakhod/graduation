@@ -1,6 +1,7 @@
 package ru.javawebinar.graduation.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -23,20 +24,20 @@ public class RestaurantService {
     @Autowired
     private VoteRepository voteRepository;
 
-    //    @CacheEvict(value = "restaurant", allEntries = true)
+    @CacheEvict(value = "restaurant", allEntries = true)
     public Restaurant create(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
         Restaurant save = restaurantRepository.save(restaurant);
         return checkNotFoundWithId(save, save.id());
     }
 
-    //    @CacheEvict(value = "restaurant", allEntries = true)
+    @CacheEvict(value = "restaurant", allEntries = true)
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
         checkNotFoundWithId(restaurantRepository.save(restaurant), restaurant.getId());
     }
 
-    //    @CacheEvict(value = "restaurant", allEntries = true)
+    @CacheEvict(value = "restaurant", allEntries = true)
     public void delete(int id) {
         checkNotFoundWithId(restaurantRepository.delete(id) != 0, id);
     }
@@ -45,7 +46,7 @@ public class RestaurantService {
         return checkNotFoundWithId(restaurantRepository.findById(id).orElse(null), id);
     }
 
-//    @Cacheable("restaurant")
+    @Cacheable("restaurants")
     public List<RestaurantTo> getAll() {
         return restaurantRepository.getAll()
                 .stream()

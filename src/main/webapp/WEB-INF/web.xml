@@ -13,9 +13,6 @@
             classpath:spring/spring-db.xml
         </param-value>
     </context-param>
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
     <!-- Spring MVC -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

@@ -23,6 +23,6 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
     List<Menu> findAllByRestaurantId(int restaurantId);
 
-    @Query("SELECT m FROM Menu m WHERE m.restaurant.id=:restaurantId and m.date = current_date")
+    @Query("SELECT m FROM Menu m WHERE m.restaurant.id=:restaurantId and m.date = CURRENT_DATE")
     Menu getOneByCurrentDate(@Param("restaurantId") int restaurantId);
 }
