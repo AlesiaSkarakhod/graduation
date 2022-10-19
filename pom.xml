@@ -23,7 +23,7 @@
         <lombok.version>1.18.12</lombok.version>
 
         <!-- json -->
-        <jackson-json.version>2.11.0</jackson-json.version>
+        <jackson-json.version>2.13.4.1</jackson-json.version>
 
         <!-- Logging -->
         <logback.version>1.2.3</logback.version>
